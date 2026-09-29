@@ -16,13 +16,15 @@ There is no window. After you drag the app to **Applications**, a menu-bar icon 
 
 This project is **in active development**. If it does not work on your Mac, [open an issue](https://github.com/zabelez/viso-gateway-releases/issues) with what you used and what you saw.
 
-Current version: **0.3.0**. Viso Gateway and Viso Gateway NDI need **macOS 11.0** or later (Monterey 12 included). Viso Gateway Screen needs **macOS 13.0** (Ventura) or later.
+Current version: **0.3.1**. Viso Gateway and Viso Gateway NDI need **macOS 11.0** or later (Monterey 12 included). Viso Gateway Screen needs **macOS 13.0** (Ventura) or later.
 
 There are three apps. Pick the one that matches the source you already have.
 
 **High Quality**, in every app, sets Resolution, Frame Rate, and Bitrate for the single high stream. The low stream stays a 640-wide proxy. **Auto** and **Native** follow the source; you can also pick a fixed size, frame rate, or bitrate cap. Changing High Quality **keeps the same `viso://` URL** so Players do not need remapping for that path.
 
-**A/V timing** in this release shares one start clock for video and audio and sends RTCP Sender Reports so [Viso Player 0.26.0](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.0) can keep lip-sync. Screen and NDI send real captured audio only (no silence fillers). Syphon stays video-only.
+**A/V timing** in this release shares one start clock for video and audio and sends RTCP Sender Reports so [Viso Player 0.26.1](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.1) can keep lip-sync. Screen and NDI send real captured audio only (no silence fillers). Syphon stays video-only.
+
+**Across networks.** With [Viso Player 0.26.1](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.1), Players in other rooms and departments get picture and sound, including through firewalls between networks. The apps work on whichever network the Mac is connected to.
 
 ## Viso Gateway
 
@@ -42,7 +44,7 @@ Syphon is video only. Players will have picture and no audio from Syphon. IPMX-A
 
 A source already published as Viso from this Mac is marked **this Mac**. **Close** stops conversion. **Start at Login** opens the app at login and publishes Syphon sources as they appear.
 
-Download **`Viso-Gateway-0.3.0.dmg`**.
+Download **`Viso-Gateway-0.3.1.dmg`**.
 
 ## Viso Gateway NDI
 
@@ -63,7 +65,7 @@ Click the icon for **New Instance** at the top, the source list in the middle, a
 
 `libndi` is inside the app. You do not install an NDI SDK or Runtime on the operator Mac. Allow **Local Network** if macOS asks.
 
-Download **`Viso-Gateway-NDI-0.3.0.dmg`**.
+Download **`Viso-Gateway-NDI-0.3.1.dmg`**.
 
 ## Viso Gateway Screen
 
@@ -77,19 +79,19 @@ Click the icon for **New Instance** at the top, the display list in the middle, 
   <img src="images/menu-gateway-screen-resolution.png" alt="Viso Gateway Screen — High Quality Resolution" width="480">
 </p>
 
-Download **`Viso-Gateway-Screen-0.3.0.dmg`**.
+Download **`Viso-Gateway-Screen-0.3.1.dmg`**.
 
 ## Install
 
-1. Download the DMG for the app you need from [Releases](https://github.com/zabelez/viso-gateway-releases/releases/tag/v0.3.0), and the matching `.sha256` file.
+1. Download the DMG for the app you need from [Releases](https://github.com/zabelez/viso-gateway-releases/releases/tag/v0.3.1), and the matching `.sha256` file.
 2. Verify the download:
 
    ```bash
-   shasum -a 256 -c Viso-Gateway-0.3.0.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-0.3.1.dmg.sha256
    # or
-   shasum -a 256 -c Viso-Gateway-NDI-0.3.0.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-NDI-0.3.1.dmg.sha256
    # or
-   shasum -a 256 -c Viso-Gateway-Screen-0.3.0.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-Screen-0.3.1.dmg.sha256
    ```
 
 3. Open the DMG. Drag the app onto **Applications**.
@@ -102,18 +104,18 @@ You can keep all three apps installed. They are separate products.
 
 ## On the player
 
-Players look up sources as `viso://<Mac-LAN-IP>:<control>/<source-id>`. After the Gateway is publishing, the name appears in the Viso Player source list. **Pair this release with Viso Player 0.26.0.** That Player binds by `source_id` and rediscovers if a cold-start still moves the control port, and it consumes the A/V timing from this Gateway. High Quality changes on Gateway 0.3.0 keep the URL stable.
+Players look up sources as `viso://<Mac-LAN-IP>:<control>/<source-id>`. After the Gateway is publishing, the name appears in the Viso Player source list. **Pair this release with Viso Player 0.26.1.** That Player binds by `source_id` and rediscovers if a cold-start still moves the control port, and it consumes the A/V timing from this Gateway. High Quality changes on Gateway 0.3.1 keep the URL stable.
 
 ## Downloads
 
 | File | Purpose |
 |------|---------|
-| `Viso-Gateway-0.3.0.dmg` | Syphon / IPMX-AVC → Viso. Drag to Applications. macOS 11+. |
-| `Viso-Gateway-0.3.0.dmg.sha256` | Verify that image |
-| `Viso-Gateway-NDI-0.3.0.dmg` | One NDI source → Viso. Drag to Applications. macOS 11+. |
-| `Viso-Gateway-NDI-0.3.0.dmg.sha256` | Verify that image |
-| `Viso-Gateway-Screen-0.3.0.dmg` | One display + system audio → Viso. Drag to Applications. macOS 13+. |
-| `Viso-Gateway-Screen-0.3.0.dmg.sha256` | Verify that image |
+| `Viso-Gateway-0.3.1.dmg` | Syphon / IPMX-AVC → Viso. Drag to Applications. macOS 11+. |
+| `Viso-Gateway-0.3.1.dmg.sha256` | Verify that image |
+| `Viso-Gateway-NDI-0.3.1.dmg` | One NDI source → Viso. Drag to Applications. macOS 11+. |
+| `Viso-Gateway-NDI-0.3.1.dmg.sha256` | Verify that image |
+| `Viso-Gateway-Screen-0.3.1.dmg` | One display + system audio → Viso. Drag to Applications. macOS 13+. |
+| `Viso-Gateway-Screen-0.3.1.dmg.sha256` | Verify that image |
 
 Windows is not in this release.
 
