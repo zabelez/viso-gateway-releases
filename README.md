@@ -8,23 +8,25 @@
 
 <h1 align="center">Viso Gateway</h1>
 
-<p align="center"><strong>One encode on the Mac. Many screens on the LAN.</strong></p>
+<p align="center"><strong>One encode on the Mac or PC. Many screens on the LAN.</strong></p>
 
-Viso Gateway turns a source on your Mac into [Viso](https://github.com/zabelez/viso-player-releases) so [Viso Player](https://github.com/zabelez/viso-player-releases) can put it on every screen in the room.
+Viso Gateway turns a source on your Mac or Windows PC into [Viso](https://github.com/zabelez/viso-player-releases) so [Viso Player](https://github.com/zabelez/viso-player-releases) can put it on every screen in the room.
 
-There is no window. After you drag the app to **Applications**, a menu-bar icon is the whole interface. No license key. Conversion stops when you **Close** that instance.
+There is no window. On the Mac a menu-bar icon is the whole interface; on Windows it is a notification-area (tray) icon. No license key. Conversion stops when you **Close** that instance.
 
-This project is **in active development**. If it does not work on your Mac, [open an issue](https://github.com/zabelez/viso-gateway-releases/issues) with what you used and what you saw.
+This project is **in active development**. If it does not work on your Mac or PC, [open an issue](https://github.com/zabelez/viso-gateway-releases/issues) with what you used and what you saw.
 
-Current version: **0.3.1**. Viso Gateway and Viso Gateway NDI need **macOS 11.0** or later (Monterey 12 included). Viso Gateway Screen needs **macOS 13.0** (Ventura) or later.
+Current version: **0.4.0**. On macOS, Viso Gateway and Viso Gateway NDI need **macOS 11.0** or later (Monterey 12 included) and Viso Gateway Screen needs **macOS 13.0** (Ventura) or later. On Windows, Viso Gateway and Viso Gateway NDI need **Windows 10 or 11, 64-bit**.
 
-There are three apps. Pick the one that matches the source you already have.
+There are three apps on macOS and two on Windows. Pick the one that matches the source you already have.
 
 **High Quality**, in every app, sets Resolution, Frame Rate, and Bitrate for the single high stream. The low stream stays a 640-wide proxy. **Auto** and **Native** follow the source; you can also pick a fixed size, frame rate, or bitrate cap. Changing High Quality **keeps the same `viso://` URL** so Players do not need remapping for that path.
 
-**A/V timing** in this release shares one start clock for video and audio and sends RTCP Sender Reports so [Viso Player 0.26.1](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.1) can keep lip-sync. Screen and NDI send real captured audio only (no silence fillers). Syphon stays video-only.
+**Flip Horizontal** and **Flip Vertical**, in every app, fix a source that arrives mirrored or upside down. Both on turns the picture 180 degrees. In Viso Gateway they are in each source's submenu and saved per source; in Viso Gateway NDI and Viso Gateway Screen they sit next to **High Quality**. A flip also keeps the same `viso://` URL, and Players get the corrected picture in High and Low Quality.
 
-**Across networks.** With [Viso Player 0.26.1](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.1), Players in other rooms and departments get picture and sound, including through firewalls between networks. The apps work on whichever network the Mac is connected to.
+**Show Logs…** opens the app logs. Attach them when you report a problem.
+
+**A/V timing** in this release shares one start clock for video and audio and sends RTCP Sender Reports so [Viso Player 0.26.0](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.0) can keep lip-sync. Screen and NDI send real captured audio only (no silence fillers). Syphon stays video-only.
 
 ## Viso Gateway
 
@@ -44,7 +46,7 @@ Syphon is video only. Players will have picture and no audio from Syphon. IPMX-A
 
 A source already published as Viso from this Mac is marked **this Mac**. **Close** stops conversion. **Start at Login** opens the app at login and publishes Syphon sources as they appear.
 
-Download **`Viso-Gateway-0.3.1.dmg`**.
+Download **`Viso-Gateway-0.4.0.dmg`**.
 
 ## Viso Gateway NDI
 
@@ -65,7 +67,7 @@ Click the icon for **New Instance** at the top, the source list in the middle, a
 
 `libndi` is inside the app. You do not install an NDI SDK or Runtime on the operator Mac. Allow **Local Network** if macOS asks.
 
-Download **`Viso-Gateway-NDI-0.3.1.dmg`**.
+Download **`Viso-Gateway-NDI-0.4.0.dmg`**.
 
 ## Viso Gateway Screen
 
@@ -79,19 +81,28 @@ Click the icon for **New Instance** at the top, the display list in the middle, 
   <img src="images/menu-gateway-screen-resolution.png" alt="Viso Gateway Screen — High Quality Resolution" width="480">
 </p>
 
-Download **`Viso-Gateway-Screen-0.3.1.dmg`**.
+Download **`Viso-Gateway-Screen-0.4.0.dmg`**.
 
-## Install
+## Windows
 
-1. Download the DMG for the app you need from [Releases](https://github.com/zabelez/viso-gateway-releases/releases/tag/v0.3.1), and the matching `.sha256` file.
+Viso Gateway and Viso Gateway NDI also run on **Windows 10 and 11 (64-bit)**, with the same menus as on the Mac, in the notification area next to the clock. Each is a zip: extract the folder anywhere and open the app. Nothing else to install.
+
+- **Viso Gateway for Windows** publishes selected **IPMX-AVC** Senders (click to publish). The NMOS Query API is found automatically with the Windows DNS client; **NMOS Query URL...** in the menu sets it by hand when the network blocks discovery. There is no Syphon on Windows. Download **`Viso-Gateway-0.4.0-windows-x64.zip`**.
+- **Viso Gateway NDI for Windows** publishes one NDI source per instance, with **New Instance** for more. The NDI runtime is inside the zip; you do not install NDI Tools or the NDI Runtime. Download **`Viso-Gateway-NDI-0.4.0-windows-x64.zip`**.
+
+Both encode on the PC with NVIDIA NVENC, Intel Quick Sync or AMD AMF when present, and Microsoft Media Foundation otherwise. Viso Gateway Screen is macOS-only.
+
+## Install on macOS
+
+1. Download the DMG for the app you need from [Releases](https://github.com/zabelez/viso-gateway-releases/releases/tag/v0.4.0), and the matching `.sha256` file.
 2. Verify the download:
 
    ```bash
-   shasum -a 256 -c Viso-Gateway-0.3.1.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-0.4.0.dmg.sha256
    # or
-   shasum -a 256 -c Viso-Gateway-NDI-0.3.1.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-NDI-0.4.0.dmg.sha256
    # or
-   shasum -a 256 -c Viso-Gateway-Screen-0.3.1.dmg.sha256
+   shasum -a 256 -c Viso-Gateway-Screen-0.4.0.dmg.sha256
    ```
 
 3. Open the DMG. Drag the app onto **Applications**.
@@ -102,28 +113,40 @@ Download **`Viso-Gateway-Screen-0.3.1.dmg`**.
 
 You can keep all three apps installed. They are separate products.
 
+## Install on Windows
+
+1. Download the zip for the app you need from [Releases](https://github.com/zabelez/viso-gateway-releases/releases/tag/v0.4.0), and the matching `.sha256` file.
+2. Verify in PowerShell: `(Get-FileHash .\Viso-Gateway-0.4.0-windows-x64.zip).Hash` must match the hash in the `.sha256` file (case does not matter).
+3. Right-click the zip → **Properties** → **Unblock** (if shown) → **OK**, then extract it anywhere (for example `C:\Viso`). Keep the folder together; the DLLs are part of the app.
+4. Open **`Viso Gateway.exe`** or **`Viso Gateway NDI.exe`**. If SmartScreen says "Windows protected your PC", click **More info → Run anyway** (not code-signed yet).
+5. When Windows Defender Firewall asks, allow **Private networks**, and keep the network profile **Private**. On Public, Windows blocks discovery and Players.
+6. Click the tray icon (under **^** next to the clock if hidden). For Viso Gateway NDI, pick a source. For Viso Gateway, click an IPMX Sender.
+7. On a [Viso Player](https://github.com/zabelez/viso-player-releases), open **Displays** and select the new Viso source.
+
 ## On the player
 
-Players look up sources as `viso://<Mac-LAN-IP>:<control>/<source-id>`. After the Gateway is publishing, the name appears in the Viso Player source list. **Pair this release with Viso Player 0.26.1.** That Player binds by `source_id` and rediscovers if a cold-start still moves the control port, and it consumes the A/V timing from this Gateway. High Quality changes on Gateway 0.3.1 keep the URL stable.
+Players look up sources as `viso://<Gateway-LAN-IP>:<control>/<source-id>`, whether the Gateway is a Mac or a PC. After the Gateway is publishing, the name appears in the Viso Player source list. **Pair this release with [Viso Player 0.26.1](https://github.com/zabelez/viso-player-releases/releases/tag/v0.26.1) or later.** That Player binds by `source_id` and rediscovers if a cold-start still moves the control port, consumes the A/V timing from this Gateway, and gets picture and sound in other rooms and departments, including through firewalls between networks. High Quality and flip changes keep the URL stable.
 
 ## Downloads
 
 | File | Purpose |
 |------|---------|
-| `Viso-Gateway-0.3.1.dmg` | Syphon / IPMX-AVC → Viso. Drag to Applications. macOS 11+. |
-| `Viso-Gateway-0.3.1.dmg.sha256` | Verify that image |
-| `Viso-Gateway-NDI-0.3.1.dmg` | One NDI source → Viso. Drag to Applications. macOS 11+. |
-| `Viso-Gateway-NDI-0.3.1.dmg.sha256` | Verify that image |
-| `Viso-Gateway-Screen-0.3.1.dmg` | One display + system audio → Viso. Drag to Applications. macOS 13+. |
-| `Viso-Gateway-Screen-0.3.1.dmg.sha256` | Verify that image |
-
-Windows is not in this release.
+| `Viso-Gateway-0.4.0.dmg` | Syphon / IPMX-AVC → Viso. Drag to Applications. macOS 11+. |
+| `Viso-Gateway-0.4.0.dmg.sha256` | Verify that image |
+| `Viso-Gateway-NDI-0.4.0.dmg` | One NDI source → Viso. Drag to Applications. macOS 11+. |
+| `Viso-Gateway-NDI-0.4.0.dmg.sha256` | Verify that image |
+| `Viso-Gateway-Screen-0.4.0.dmg` | One display + system audio → Viso. Drag to Applications. macOS 13+. |
+| `Viso-Gateway-Screen-0.4.0.dmg.sha256` | Verify that image |
+| `Viso-Gateway-0.4.0-windows-x64.zip` | IPMX-AVC → Viso. Extract and run. Windows 10/11 x64. |
+| `Viso-Gateway-0.4.0-windows-x64.zip.sha256` | Verify that zip |
+| `Viso-Gateway-NDI-0.4.0-windows-x64.zip` | One NDI source → Viso. Extract and run. Windows 10/11 x64. |
+| `Viso-Gateway-NDI-0.4.0-windows-x64.zip.sha256` | Verify that zip |
 
 ## Talk to us
 
 This project grows with the rooms that try it.
 
-- [Open an issue](https://github.com/zabelez/viso-gateway-releases/issues) with the Mac you used, which app (Gateway, Gateway NDI, or Gateway Screen), the source, and what you saw on the player.
+- [Open an issue](https://github.com/zabelez/viso-gateway-releases/issues) with the Mac or PC you used, which app (Gateway, Gateway NDI, or Gateway Screen), the source, and what you saw on the player.
 - Follow [Facebook](https://www.facebook.com/ndiplayer) and [Instagram](https://www.instagram.com/ndiplayer). Photos and short videos from your room are welcome.
 
 We want to learn from real installs. Tell us what is missing.
